@@ -14,9 +14,9 @@ function Circle(x, y, dx, dy, radius) {
   this.draw = function(){
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
-    ctx.fillStyle = "black";
+    ctx.fillStyle = "rgba(0, 186, 255, 0.5)";
     ctx.fill();
-    ctx.strokeStyle = "red";
+    ctx.strokeStyle = "blue";
     ctx.stroke();
   }
 
@@ -41,14 +41,14 @@ function Circle(x, y, dx, dy, radius) {
 }
 
 let circles = [];
-let radius = 50;
+let radius = 18;
 
-for(let i=0; i<25; i++) {
+for(let i=0; i<100; i++) {
 
   let x = Math.random() * (canvas.width - radius * 2) + radius;
   let y = Math.random() * (canvas.height - radius * 2) + radius;
-  let dx = 2 * Math.random();
-  let dy = 2 * Math.random();
+  let dx = 2 * (Math.random() - 0.5);
+  let dy = 2 * (Math.random() - 0.5);
 
   circles.push(new Circle(x, y, dx, dy, radius));
 }
