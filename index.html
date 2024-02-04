@@ -27,6 +27,7 @@
   bubble = new StraightBubble(100, 100);
 
   let bubbles = [];
+  let score = 0;
   spawnBubbles();
 
   function draw(){
@@ -36,6 +37,9 @@
     // bubble.update();
     // bubble.draw();
     checkCollision();
+    playerHit();
+    player.dead();
+    removeDeadBubbles();
     updatePositions();
     drawBubbles();
   }
