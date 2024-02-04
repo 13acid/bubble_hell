@@ -55,5 +55,8 @@ function checkCollision() {
     console.log("Collided");
     bubble.fs = "red";
   }
+  else{
+    bubble.fs = "blue";
+  }
 }
 
