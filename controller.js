@@ -10,9 +10,9 @@ const controls = {
   }
 }
 
-function updatePlayer(){
-    if(controls.keys[37]) {player.x = player.x - 1;} 
-    if(controls.keys[39]) {player.x = player.x + 1;} 
-    if(controls.keys[38]) {player.y = player.y - 1;} 
-    if(controls.keys[40]) {player.y = player.y + 1;} 
-}
+// function updatePlayer(){
+//     if(controls.keys[37]) {player.x = player.x - 1;} 
+//     if(controls.keys[39]) {player.x = player.x + 1;} 
+//     if(controls.keys[38]) {player.y = player.y - 1;} 
+//     if(controls.keys[40]) {player.y = player.y + 1;} 
+// }

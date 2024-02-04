@@ -24,11 +24,15 @@
   controls.start();
   
   player = new Player(150, 250);
+  bubble = new StraightBubble(100, 100);
 
   function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    updatePlayer();
+    player.update();
     player.draw();
+    bubble.update();
+    bubble.draw();
+    checkCollision();
   }
 
   setInterval(draw,15);
