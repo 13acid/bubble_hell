@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 
+<style>
+  canvas{
+    outline: 1px solid black;
+    background-color: grey;
+  }
 
+  body{
+    background-color: darkgrey;
+    text-align: center;
+    margin-top: 50px;
+  }
+</style>
 
 <canvas></canvas>
-<script src="game.js"></script>
 
+<script src="main.js"></script>
+<script src="game.js"></script>
+<script src="controller.js"></script>
+<script src="display.js"></script>
+<script>
+  setupCanvas();
+  controls.start();
+  
+  player = new Player(150, 250);
+
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    updatePlayer();
+    player.draw();
+  }
+
+  setInterval(draw,15);
+</script>
 </html>
 
