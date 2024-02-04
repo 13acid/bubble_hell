@@ -17,15 +17,17 @@ class Bubble {
 
 class Player extends Bubble{
   constructor(x, y){
-    super(x, y, 0, 0, 10, "white", "black", 10);
+    super(x, y, 0, 0, 10, "white", "black", 5);
     this.isPlayer = true;
   }
 
   update(){
-    if(controls.keys[37]) {this.x = this.x - 2;} 
-    if(controls.keys[39]) {this.x = this.x + 2;} 
-    if(controls.keys[38]) {this.y = this.y - 2;} 
-    if(controls.keys[40]) {this.y = this.y + 2;} 
+    if(!this.dead()){ 
+      if(controls.keys[37] && this.x - this.radius > 0) {this.x = this.x - 2;} 
+      if(controls.keys[39] && this.x + this.radius < canvas.width) {this.x = this.x + 2;} 
+      if(controls.keys[38] && this.y - this.radius > 0) {this.y = this.y - 2;} 
+      if(controls.keys[40] && this.y + this.radius < canvas.height) {this.y = this.y + 2;} 
+    }
   }
 
   dead(){
@@ -41,7 +43,7 @@ class Player extends Bubble{
 
 class StraightBubble extends Bubble{
   constructor(x, y){
-    super(x, y, Math.random(1,4), Math.random(1,4), Math.floor(5 + Math.random() * 35),  "rgba(51, 153, 255, 0.7)", "red", 1);
+    super(x, y, Math.random(1,4), Math.random(1,4), Math.floor(5 + Math.random() * 35),  getRandomBubbleColour(), "red", 1);
   }
 
   update(){
@@ -63,12 +65,8 @@ function checkCollision() {
   for (i=0; i<bubbles.length; i++){
     if (Math.sqrt(Math.pow(player.x - bubbles[i].x,2) + Math.pow(player.y - bubbles[i].y,2)) < (player.radius + bubbles[i].radius)) {
       console.log("Collided");
-      bubbles[i].fs = "red";
       bubbles[i].hp -= 1;
       return true;
-    }
-    else{
-      bubbles[i].fs =  "rgba(51, 153, 255, 0.7)";
     }
   }
 }
@@ -115,3 +113,20 @@ function drawBubbles(){
   player.draw();
 }
 
+function increaseScore() {
+  if(!player.dead()) {
+    score += 1;
+  }
+}
+
+function startGame() {
+  controls.start();
+  
+  player = new Player(25, 60);
+  bubble = new StraightBubble(100, 100);
+
+  bubbles = [];
+  score = 0;
+  spawnBubbles();
+
+}

@@ -11,9 +11,30 @@
     text-align: center;
     margin-top: 50px;
   }
+
+  div{
+    margin: 0 auto;
+    width: 500px;
+    text-align: left;
+    font-family: monospace;
+  }
+
+  button{
+    font-family: monospace;
+  }
 </style>
 
 <canvas></canvas>
+<div id="ui">
+  <h1>BUBBLE HELL</h1>
+  <button onclick="startGame()">restart game</button>
+  <ul>
+    <li>Use the arrow keys to control the white bubble.</li>
+    <li>Avoid the other bubbles! When you pop a bubble, you lose 1 HP</li>
+    <li>When your HP reaches 0, the game is over.</li>
+    <li>The longer you stay alive, the higher your score.</li>
+
+</div>
 
 <script src="main.js"></script>
 <script src="game.js"></script>
@@ -21,14 +42,7 @@
 <script src="display.js"></script>
 <script>
   setupCanvas();
-  controls.start();
-  
-  player = new Player(25, 25);
-  bubble = new StraightBubble(100, 100);
-
-  let bubbles = [];
-  let score = 0;
-  spawnBubbles();
+  startGame();
 
   function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -42,6 +56,8 @@
     removeDeadBubbles();
     updatePositions();
     drawBubbles();
+    increaseScore();
+    drawText();
   }
 
   setInterval(draw,15);
