@@ -23,16 +23,21 @@
   setupCanvas();
   controls.start();
   
-  player = new Player(150, 250);
+  player = new Player(25, 25);
   bubble = new StraightBubble(100, 100);
+
+  let bubbles = [];
+  spawnBubbles();
 
   function draw(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    player.update();
-    player.draw();
-    bubble.update();
-    bubble.draw();
+    // player.update();
+    // player.draw();
+    // bubble.update();
+    // bubble.draw();
     checkCollision();
+    updatePositions();
+    drawBubbles();
   }
 
   setInterval(draw,15);

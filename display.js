@@ -1,7 +1,7 @@
 function setupCanvas(){
 canvas = document.querySelector("canvas");
-canvas.height = 400;
-canvas.width = 400;
+canvas.height = 500;
+canvas.width = 500;
 ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
 }

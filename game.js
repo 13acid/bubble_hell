@@ -22,17 +22,17 @@ class Player extends Bubble{
   }
 
   update(){
-    if(controls.keys[37]) {this.x = this.x - 1;} 
-    if(controls.keys[39]) {this.x = this.x + 1;} 
-    if(controls.keys[38]) {this.y = this.y - 1;} 
-    if(controls.keys[40]) {this.y = this.y + 1;} 
+    if(controls.keys[37]) {this.x = this.x - 2;} 
+    if(controls.keys[39]) {this.x = this.x + 2;} 
+    if(controls.keys[38]) {this.y = this.y - 2;} 
+    if(controls.keys[40]) {this.y = this.y + 2;} 
   }
 
 }
 
 class StraightBubble extends Bubble{
   constructor(x, y){
-    super(x, y, Math.random(1,4), Math.random(1,4), 25, "blue", "red", 1);
+    super(x, y, Math.random(1,4), Math.random(1,4), Math.floor(5 + Math.random() * 35),  "rgba(51, 153, 255, 0.7)", "red", 1);
   }
 
   update(){
@@ -51,12 +51,40 @@ class StraightBubble extends Bubble{
 }
 
 function checkCollision() {
-  if (Math.sqrt(Math.pow(player.x - bubble.x,2) + Math.pow(player.y - bubble.y,2)) < (player.radius + bubble.radius)) {
-    console.log("Collided");
-    bubble.fs = "red";
+  for (i=0; i<bubbles.length; i++){
+    if (Math.sqrt(Math.pow(player.x - bubbles[i].x,2) + Math.pow(player.y - bubbles[i].y,2)) < (player.radius + bubbles[i].radius)) {
+      console.log("Collided");
+      bubbles[i].fs = "red";
+    }
+    else{
+      bubbles[i].fs =  "rgba(51, 153, 255, 0.7)";
+    }
   }
-  else{
-    bubble.fs = "blue";
+}
+
+function spawnBubbles(){
+
+  for(i=0;i<50;i++){
+    let x = Math.floor(Math.random() * (canvas.width - 75 * 2) + 75);
+    let y = Math.floor(Math.random() * (canvas.height - 75 * 2) + 75);
+
+    bubbles.push(new StraightBubble(x, y))
+  }
+}
+
+function updatePositions(){
+  player.update();
+
+  for(i=0; i<bubbles.length; i++){
+    bubbles[i].update();
+  }
+}
+
+function drawBubbles(){
+  player.draw();
+
+  for(i=0; i<bubbles.length; i++){
+    bubbles[i].draw();
   }
 }
 
