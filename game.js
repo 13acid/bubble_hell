@@ -1,5 +1,5 @@
 class Bubble {
-  constructor(x, y, radius, fs, ss, hp){
+  constructor(x, y, vx, vy, radius, fs, ss, hp){
     this.x = x;
     this.y = y;
     this.radius = radius;
@@ -15,7 +15,7 @@ class Bubble {
 
 class Player extends Bubble{
   constructor(x, y){
-    super(x, y, 10, "white", "black", 10);
+    super(x, y, vx, vy, 10, "white", "black", 10);
     this.isPlayer = true;
   }
 }
