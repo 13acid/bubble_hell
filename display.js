@@ -29,7 +29,8 @@ function getRandomBubbleColour() {
 }
 
 function drawText(){
-  ctx.font = "bold 20px monospace"
+  ctx.textAlign = "start";
+  ctx.font = "bold 20px monospace";
   ctx.fillText("SCORE: " + score, 5, 20);
 
   if(player.hp > 0){
@@ -37,4 +38,7 @@ function drawText(){
   }else{
     ctx.fillText("GAME OVER", 5, 40);
   }
+  
+  ctx.textAlign = "end";
+  ctx.fillText("HI SCORE: " + getHiScore(), 495, 20)
 }

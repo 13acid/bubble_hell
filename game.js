@@ -119,11 +119,29 @@ function increaseScore() {
   }
 }
 
+function setHiScore(){
+ if(localStorage) {
+    if (hiScore < score){
+      localStorage.setItem("hiScore", score);
+    }
+  }
+}
+
+function getHiScore(){
+  if(localStorage) {
+    return localStorage.getItem("hiScore");
+  }
+}
+
 function startGame() {
   controls.start();
   
   player = new Player(25, 60);
   bubble = new StraightBubble(100, 100);
+  hiScore = localStorage.getItem("hiScore");
+
+
+
 
   bubbles = [];
   score = 0;
