@@ -41,4 +41,5 @@ function drawText(){
   
   ctx.textAlign = "end";
   ctx.fillText("HI SCORE: " + getHiScore(), 495, 20)
+  ctx.fillText("BUBBLES: " + bubbles.length, 495, 40)
 }

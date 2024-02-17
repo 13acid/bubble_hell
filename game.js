@@ -85,13 +85,19 @@ function removeDeadBubbles() {
   }
 }
 
-function spawnBubbles(){
+function spawnInitialBubbles() {
 
-  for(i=0;i<50;i++){
+  for(i=0;i<10;i++){
     let x = Math.floor(Math.random() * (canvas.width - 75 * 2) + 75);
     let y = Math.floor(Math.random() * (canvas.height - 75 * 2) + 75);
 
     bubbles.push(new StraightBubble(x, y))
+  }
+}
+
+function spawnExtraBubble() {
+  if(score % 100 === 0) {
+    bubbles.push(new StraightBubble(200,200));
   }
 }
 
@@ -145,6 +151,6 @@ function startGame() {
 
   bubbles = [];
   score = 0;
-  spawnBubbles();
+  spawnInitialBubbles();
 
 }
