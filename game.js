@@ -79,7 +79,7 @@ function playerHit(){
 
 function removeDeadBubbles() {
   for (i=0; i<bubbles.length; i++){
-    if (bubbles[i].hp <= 0){
+    if (bubbles[i].hp <= 0 && player.hp > 0){
       bubbles.splice(i,1);
     }
   }
