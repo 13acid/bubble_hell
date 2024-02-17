@@ -96,8 +96,9 @@ function spawnInitialBubbles() {
 }
 
 function spawnExtraBubble() {
+  let spawnPoint = getRandomInt(bubbles.length);
   if(score % 100 === 0) {
-    bubbles.push(new StraightBubble(200,200));
+    bubbles.push(new StraightBubble(bubbles[spawnPoint].x,bubbles[spawnPoint].y));
   }
 }
 
@@ -145,9 +146,6 @@ function startGame() {
   player = new Player(25, 60);
   bubble = new StraightBubble(100, 100);
   hiScore = localStorage.getItem("hiScore");
-
-
-
 
   bubbles = [];
   score = 0;
