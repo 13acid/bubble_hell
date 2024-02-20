@@ -44,9 +44,9 @@
   setupCanvas();
   startGame();
 
-  function draw(){
+  function update(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    spawnExtraBubble();
+    spawnNewBubble();
     checkCollision();
     playerHit();
     player.dead();
@@ -58,7 +58,7 @@
     setHiScore();
   }
 
-  setInterval(draw,15);
+  setInterval(update,15);
 </script>
 </html>
 
