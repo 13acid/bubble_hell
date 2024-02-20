@@ -1,3 +1,25 @@
+
+// ____  __  __  ____  ____  __    ____    _   _  ____  __    __
+//(  _ \(  )(  )(  _ \(  _ \(  )  ( ___)  ( )_( )( ___)(  )  (  )
+// ) _ < )(__)(  ) _ < ) _ < )(__  )__)    ) _ (  )__)  )(__  )(__
+//(____/(______)(____/(____/(____)(____)  (_) (_)(____)(____)(____)
+
+// KEYBOARD CONTROLS
+
+const controls = {
+  start: function(){
+    controls.keys = [];
+    window.addEventListener('keydown', function (e) {
+      controls.keys[e.keyCode] = true;
+    })
+    window.addEventListener('keyup', function (e) {
+      controls.keys[e.keyCode] = false;
+    })
+  }
+}
+
+// GAME FUNCTIONS
+
 class Bubble {
   constructor(x, y, vx, vy, radius, fs, ss, hp){
     this.x = x;
@@ -43,7 +65,7 @@ class Player extends Bubble{
 
 class StraightBubble extends Bubble{
   constructor(x, y){
-    super(x, y, Math.random(1,4), Math.random(1,4), Math.floor(5 + Math.random() * 35),  getRandomBubbleColour(), "red", 1);
+    super(x, y, Math.random() * 3 - 1.5, Math.random() * 3 - 1.5, Math.floor(5 + Math.random() * 35),  getRandomBubbleColour(), "red", 1);
   }
 
   update(){
@@ -95,7 +117,7 @@ function spawnInitialBubbles() {
   }
 }
 
-function spawnExtraBubble() {
+function spawnNewBubble() {
   let spawnPoint = getRandomInt(bubbles.length);
   if(score % 100 === 0) {
     bubbles.push(new StraightBubble(bubbles[spawnPoint].x,bubbles[spawnPoint].y));
@@ -120,6 +142,58 @@ function drawBubbles(){
   player.draw();
 }
 
+
+// DRAWING TO CANVAS
+
+function setupCanvas(){
+  canvas = document.querySelector("canvas");
+  canvas.height = 500;
+  canvas.width = 500;
+  ctx = canvas.getContext("2d");
+  ctx.imageSmoothingEnabled = false;
+}
+
+function drawCircle(x, y, radius, fs, ss){
+  ctx.beginPath();
+  ctx.arc(x, y, radius, 0, Math.PI * 2, false);
+  ctx.fillStyle = fs;
+  ctx.fill();
+  ctx.strokeStyle = ss;
+  ctx.stroke();
+}
+
+function getRandomInt(max){
+  return Math.floor(Math.random() * max);
+}
+
+function getRandomBubbleColour() {
+  let r = getRandomInt(255);
+  let g = getRandomInt(255);
+  let b = getRandomInt(255);
+  let a = "0.7";
+
+  return "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+}
+
+function drawText(){
+  ctx.textAlign = "start";
+  ctx.font = "bold 20px monospace";
+  ctx.fillText("SCORE: " + score, 5, 20);
+
+  if(player.hp > 0){
+    ctx.fillText("HP: " + player.hp, 5, 40);
+  }else{
+    ctx.fillText("GAME OVER", 5, 40);
+  }
+  
+  ctx.textAlign = "end";
+  ctx.fillText("HI SCORE: " + getHiScore(), 495, 20)
+  ctx.fillText("BUBBLES: " + bubbles.length, 495, 40)
+}
+
+
+//HI SCORE
+
 function increaseScore() {
   if(!player.dead()) {
     score += 1;
@@ -140,6 +214,8 @@ function getHiScore(){
   }
 }
 
+// GAME START
+
 function startGame() {
   controls.start();
   
@@ -150,5 +226,4 @@ function startGame() {
   bubbles = [];
   score = 0;
   spawnInitialBubbles();
-
 }
