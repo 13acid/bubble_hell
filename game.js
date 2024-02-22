@@ -65,7 +65,7 @@ class Player extends Bubble{
 
 class StraightBubble extends Bubble{
   constructor(x, y){
-    super(x, y, Math.random() * 3 - 1.5, Math.random() * 3 - 1.5, Math.floor(5 + Math.random() * 35),  getRandomBubbleColour(), "red", 1);
+    super(x, y, Math.random() * 2 - 1, Math.random() * 2 - 1, Math.floor(5 + Math.random() * 35),  getRandomBubbleColour(), "red", 1);
   }
 
   update(){
