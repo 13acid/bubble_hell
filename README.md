@@ -1,3 +1,3 @@
 # bubble_hell
 
-play here: https://acid13.itch.io/bubble-hell
+play here: https://13acid.github.io/game.html
