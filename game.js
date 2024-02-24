@@ -86,7 +86,6 @@ class StraightBubble extends Bubble{
 function checkCollision() {
   for (i=0; i<bubbles.length; i++){
     if (Math.sqrt(Math.pow(player.x - bubbles[i].x,2) + Math.pow(player.y - bubbles[i].y,2)) < (player.radius + bubbles[i].radius)) {
-      console.log("Collided");
       bubbles[i].hp -= 1;
       return true;
     }
